@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CHART-Paoay | Offline Health Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Dexie.js for offline IndexedDB storage -->
+  <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
+</head>
+<body>
+  <h1>PROJECT CHART-PAOAY</h1>
+
+  <!-- LOGIN SECTION -->
+  <section id="login-section">
+    <h2>System Login</h2>
+    <select id="role-select">
+      <option value="bhw">Barangay Health Worker (Admin)</option>
+      <option value="parent">Parent / Guardian</option>
+    </select>
+    <input type="text" id="username" placeholder="Child ID or BHW Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="handleLogin()">Login</button>
+  </section>
+
+<!-- BHW DASHBOARD -->
+  <section id="bhw-dashboard" style="display:none;">
+    <h2>BHW Data Entry (Offline-Ready)</h2>
+    <input type="text" id="child-id" placeholder="Child ID (e.g., PAO-001)" required>
+    <input type="text" id="child-name" placeholder="Child Name" required>
+    <input type="password" id="parent-pass" placeholder="Assign Parent Password" required>
+    <input type="number" id="weight" placeholder="Weight (kg)" step="0.1" required>
+    <input type="number" id="height" placeholder="Height (cm)" step="0.1" required>
+    <button onclick="saveRecord()">Save Record Offline</button>
+    <button onclick="logout()">Logout</button>
+
+    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ddd;">
+    
+    <h3>Organized Client Records</h3>
+    <div id="records-container" style="margin-top: 10px; overflow-x: auto;">
+      <!-- Records will load here -->
+    </div>
+  </section>
+    
+  <!-- PARENT PORTAL -->
+  <section id="parent-portal" style="display:none;">
+    <h2>Child Health Record</h2>
+    <div id="my-child-data"></div>
+    <button onclick="logout()">Logout</button>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
